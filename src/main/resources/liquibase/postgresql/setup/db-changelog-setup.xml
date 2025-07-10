@@ -1,0 +1,77 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <property name="defaultSchemaName" value="public"/>
+
+    <changeSet id="create_city" author="istanisic">
+        <sqlFile path="ddl/create_city.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="insert_to_city" author="istanisic">
+    <sqlFile path="dml/insert_to_city.sql"
+             relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="select_city_by_postalcode" author="istanisic">
+        <sqlFile path="operations/fnc_select_city_by_postal_code.sql" relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="select_city_by_population" author="istanisic">
+        <sqlFile path="operations/fnc_select_city_by_population_cnt.sql" relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="create_person" author="istanisic">
+        <sqlFile path="ddl/create_person.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="insert_to_person" author="istanisic">
+        <sqlFile path="dml/insert_to_person.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="validate_age_in_months" author="istanisic">
+        <sqlFile path="operations/fnc_validate_age_in_months.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="trigger_validate_age_in_months" author="istanisic">
+        <sqlFile path="operations/trigger_validate_age_in_months.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="create_view_people_from_belgrade" author="istanisic">
+        <sqlFile path="operations/view_select_people_from_belgrade.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="create_view_adults" author="istanisic">
+        <sqlFile path="operations/view_select_adults.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
+
+    <changeSet id="procedure_delete_person" author="istanisic">
+        <sqlFile path="operations/procedure_delete_person.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="procedure_insert_person" author="istanisic">
+        <sqlFile path="operations/procedure_insert_person.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="procedure_update_person" author="istanisic">
+        <sqlFile path="operations/procedure_update_age_in_months.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+</databaseChangeLog>
