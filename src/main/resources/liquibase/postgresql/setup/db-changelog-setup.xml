@@ -34,6 +34,16 @@
                  relativeToChangelogFile="true"/>
     </changeSet>
 
+    <changeSet id="create_person_residence_history" author="istanisic">
+        <sqlFile path="ddl/create_person_residence_history.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="insert_to_person_residence_history" author="istanisic">
+        <sqlFile path="dml/insert_to_person_residence_history.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
     <changeSet id="validate_age_in_months" author="istanisic">
         <sqlFile path="operations/fnc_validate_age_in_months.sql"
                  relativeToChangelogFile="true"
