@@ -3,5 +3,7 @@ package fon.bg.ac.rs.istanisic.dto;
 public record CityDTO(
         Long id,
         int postalCode,
-        String name) {
+        String name,
+        Integer population
+) {
 }

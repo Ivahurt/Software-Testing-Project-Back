@@ -2,7 +2,9 @@ package fon.bg.ac.rs.istanisic.converter;
 
 import fon.bg.ac.rs.istanisic.dto.CityDTO;
 import fon.bg.ac.rs.istanisic.model.City;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CityConverter implements DTOEntityConverter<CityDTO, City> {
 
     @Override
@@ -11,7 +13,8 @@ public class CityConverter implements DTOEntityConverter<CityDTO, City> {
                 City.builder()
                         .id(cityDTO.id())
                         .postalCode(cityDTO.postalCode())
-                        .name(cityDTO.name()).build();
+                        .name(cityDTO.name())
+                        .population(cityDTO.population()).build();
     }
 
     @Override
@@ -19,7 +22,8 @@ public class CityConverter implements DTOEntityConverter<CityDTO, City> {
         return city == null ? null : new CityDTO(
                 city.getId(),
                 city.getPostalCode(),
-                city.getName()
+                city.getName(),
+                city.getPopulation()
         );
     }
 }

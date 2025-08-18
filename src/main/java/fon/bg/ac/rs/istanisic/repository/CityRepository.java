@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface CityRepository  extends  JpaRepository<City, Long>{
     Optional<City> findByPostalCode(int i);
+    Optional<City> findByName(String name);
+    void deleteByPostalCode(int code);
 }

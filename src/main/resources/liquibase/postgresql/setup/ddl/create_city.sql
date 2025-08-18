@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS city (
     id BIGSERIAL PRIMARY KEY,
-    postal_code INT CONSTRAINT postal_code_chk CHECK (postal_code BETWEEN 11000 AND 40000) UNIQUE NOT NULL,
+    postal_code INT CONSTRAINT postal_code_chk CHECK (postal_code BETWEEN 11000 AND 39660) UNIQUE NOT NULL,
     name VARCHAR(30)
     NOT NULL CHECK (LENGTH(name) BETWEEN 2 AND 30),
-    population INT NOT NULL CHECK (population > 0)
+    population INT CHECK (population BETWEEN 0 AND 2000000)
 );
