@@ -5,12 +5,15 @@ import fon.bg.ac.rs.istanisic.dto.PersonDTO;
 import fon.bg.ac.rs.istanisic.dto.PersonUpdateDTO;
 import fon.bg.ac.rs.istanisic.model.City;
 import fon.bg.ac.rs.istanisic.model.Person;
+import fon.bg.ac.rs.istanisic.model.PersonResidenceHistory;
 import fon.bg.ac.rs.istanisic.repository.CityRepository;
 import fon.bg.ac.rs.istanisic.repository.PersonRepository;
+import fon.bg.ac.rs.istanisic.repository.foreign_key.PersonResidenceHistoryId;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +23,8 @@ public class PersonService {
     private final PersonRepository personRepository;
     private final PersonConverter personConverter;
     private final CityRepository cityRepository;
+
+    private final PersonResidenceService personResidenceService;
 
     public List<PersonDTO> getAll() {
         return personConverter.listToDTO(personRepository.findAll());
@@ -69,6 +74,20 @@ public class PersonService {
 
         Person updatedPerson = foundPerson.get();
         updatedPerson.setCityOfResidence(foundCity.get());
+
+        PersonResidenceHistoryId prhId = new PersonResidenceHistoryId(
+                foundPerson.get().getId(),
+                foundCity.get().getId(),
+                LocalDate.now()
+        );
+
+        PersonResidenceHistory personResidenceHistory = new PersonResidenceHistory();
+        personResidenceHistory.setPersonResidenceHistoryId(prhId);
+        personResidenceHistory.setPerson(foundPerson.get());
+        personResidenceHistory.setCity(foundCity.get());
+        personResidenceHistory.setResidenceEnd(null);
+        personResidenceService.savePersonResidence(personResidenceHistory);
+
         return personConverter.toDto(personRepository.save(updatedPerson));
     }
 }

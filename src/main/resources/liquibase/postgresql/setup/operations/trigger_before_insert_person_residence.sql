@@ -1,0 +1,4 @@
+create trigger trg_check_person_residence_history
+before insert on person_residence_history
+for each row
+execute function check_person_residence_history();

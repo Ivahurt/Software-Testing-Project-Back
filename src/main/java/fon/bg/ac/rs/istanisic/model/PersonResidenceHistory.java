@@ -1,7 +1,7 @@
 package fon.bg.ac.rs.istanisic.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import fon.bg.ac.rs.istanisic.repository.foreign_key.PersonResidenceHistoryId;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,17 +16,19 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 public class PersonResidenceHistory {
-    @NotNull
-    @Column(name = "person_id")
-    private  Person person;
 
-    @NotNull
-    @Column(name = "city_id")
+    @EmbeddedId
+    private PersonResidenceHistoryId personResidenceHistoryId;
+
+    @MapsId("personId")
+    @ManyToOne
+    @JoinColumn(name = "person_id", nullable = false)
+    private Person person;
+
+    @MapsId("cityId")
+    @ManyToOne
+    @JoinColumn(name = "city_id", nullable = false)
     private City city;
-
-    @NotNull
-    @Column(name = "residence_start")
-    private LocalDate residenceStart;
 
     @Column(name = "residence_end")
     private LocalDate residenceEnd;

@@ -84,4 +84,17 @@
                  splitStatements="false"/>
     </changeSet>
 
+    <changeSet id="check_person_residence_history" author="istanisic">
+        <sqlFile path="operations/fnc_check_person_residence_history.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="triger_insert_person_residence" author="istanisic">
+        <sqlFile path="operations/trigger_before_insert_person_residence.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+
 </databaseChangeLog>
