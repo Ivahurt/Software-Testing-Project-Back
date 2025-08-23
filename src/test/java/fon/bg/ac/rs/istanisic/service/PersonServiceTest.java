@@ -53,6 +53,37 @@ class PersonServiceTest {
     }
 
     @Test
+    @DisplayName("Get all persons - non-empty list")
+    void getAllPersonsNonEmpty() {
+        Person person1 = new Person();
+        person1.setId(1L);
+        person1.setFirstName("Pera");
+        person1.setLastName("Peric");
+
+        Person person2 = new Person();
+        person2.setId(2L);
+        person2.setFirstName("Mika");
+        person2.setLastName("Mikic");
+
+        List<Person> persons = List.of(person1, person2);
+
+        PersonDTO dto1 = new PersonDTO(1L, "Pera", "Peric", null, null, null, null);
+        PersonDTO dto2 = new PersonDTO(2L, "Mika", "Mikic", null, null, null, null);
+        List<PersonDTO> dtos = List.of(dto1, dto2);
+
+        when(personRepository.findAll()).thenReturn(persons);
+        when(personConverter.listToDTO(persons)).thenReturn(dtos);
+
+        var result = personService.getAll();
+
+        assertThat(result).isNotEmpty();
+        assertThat(result).hasSize(2).containsExactlyElementsOf(dtos);
+
+        verify(personRepository, times(1)).findAll();
+        verify(personConverter, times(1)).listToDTO(persons);
+    }
+
+    @Test
     @DisplayName("Save person - valid data")
     void savePersonValid() throws Exception {
         PersonDTO dto = new PersonDTO(1L, "Pera", "Peric",
@@ -97,6 +128,29 @@ class PersonServiceTest {
 
         Exception ex = assertThrows(Exception.class, () -> personService.savePerson(personDTO));
         assertThat(ex.getMessage()).isEqualTo("Mesto rođenja ne može da bude prazno!");
+        verify(cityRepository, times(1)).findByName("Nepostojeci Grad");
+        verify(personRepository, never()).save(any());
+    }
+
+    @Test
+    @DisplayName("Save person throws exception if city of residence missing")
+    void savePersonCityOfResidenceMissing() {
+        PersonDTO personDTO = new PersonDTO(
+                1L, "Nikola", "Nikolic",
+                LocalDate.of(1995, 5, 15),
+                12345L,
+                "Novi Sad",
+                "Nepostojeci Grad"
+        );
+
+        Person personEntity = new Person();
+        when(personConverter.toEntity(personDTO)).thenReturn(personEntity);
+        when(cityRepository.findByName("Novi Sad")).thenReturn(Optional.of(new City()));
+        when(cityRepository.findByName("Nepostojeci Grad")).thenReturn(Optional.empty());
+
+        Exception ex = assertThrows(Exception.class, () -> personService.savePerson(personDTO));
+        assertThat(ex.getMessage()).isEqualTo("Mesto stanovanja ne može da bude prazno");
+        verify(cityRepository, times(1)).findByName("Novi Sad");
         verify(cityRepository, times(1)).findByName("Nepostojeci Grad");
         verify(personRepository, never()).save(any());
     }
