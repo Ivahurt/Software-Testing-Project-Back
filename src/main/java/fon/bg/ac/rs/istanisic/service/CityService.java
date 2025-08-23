@@ -32,7 +32,7 @@ public class CityService {
     @Transactional
     public void deleteCity(int postalcode) throws Exception{
         if (cityRepository.findByPostalCode(postalcode).isEmpty()) {
-            throw new Exception("City doesn't exist");
+            throw new Exception("Mesto ne postoji");
         }
         cityRepository.deleteByPostalCode(postalcode);
     }
@@ -41,7 +41,7 @@ public class CityService {
         int postalCode = cityDTO.postalCode();
         Optional<City> foundCity = cityRepository.findByPostalCode(postalCode);
         if (foundCity.isEmpty()) {
-            throw new Exception("City doesn't exist");
+            throw new Exception("Mesto ne postoji");
         }
 
         City updatedCity = foundCity.get();

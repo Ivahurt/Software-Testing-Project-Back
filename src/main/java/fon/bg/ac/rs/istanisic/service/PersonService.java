@@ -35,11 +35,11 @@ public class PersonService {
         Optional<City> cityOfBirth = cityRepository.findByName(personDTO.cityBirthName());
         Optional<City> cityOfResidence = cityRepository.findByName(personDTO.cityResidenceName());
         if (cityOfBirth.isEmpty()) {
-            throw new Exception("City of birth is empty!");
+            throw new Exception("Mesto rođenja ne može da bude prazno!");
         }
 
         if (cityOfResidence.isEmpty()) {
-            throw new Exception("City of residence is empty");
+            throw new Exception("Mesto stanovanja ne može da bude prazno");
         }
 
         person.setCityOfBirth(cityOfBirth.get());
@@ -51,10 +51,10 @@ public class PersonService {
     @Transactional
     public void deletePerson(Long id) throws Exception{
         if (id == null) {
-            throw new Exception("Person id can not be null");
+            throw new Exception("Id osobe mora da bude unet");
         }
         if (personRepository.findByUniqueIdentificationNumber(id).isEmpty()) {
-            throw new Exception("Person doesn't exist");
+            throw new Exception("Osoba ne postoji");
 
         }
         personRepository.deleteByUniqueIdentificationNumber(id);
@@ -64,12 +64,12 @@ public class PersonService {
         Long uniqueIdentificationNumber = personDTO.uniqueIdentificationNumber();
         Optional<Person> foundPerson = personRepository.findByUniqueIdentificationNumber(uniqueIdentificationNumber);
         if (foundPerson.isEmpty()) {
-            throw new Exception("Person doesn't exist");
+            throw new Exception("Osoba ne postoji");
         }
 
         Optional<City> foundCity = cityRepository.findByName(personDTO.cityResidenceName());
         if (foundCity.isEmpty()) {
-            throw new Exception("City doesn't exist");
+            throw new Exception("Mesto ne postoji");
         }
 
         Person updatedPerson = foundPerson.get();
