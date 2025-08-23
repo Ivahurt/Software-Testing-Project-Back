@@ -3,6 +3,7 @@ package fon.bg.ac.rs.istanisic.service;
 import fon.bg.ac.rs.istanisic.controller.CityController;
 import fon.bg.ac.rs.istanisic.converter.CityConverter;
 import fon.bg.ac.rs.istanisic.dto.CityDTO;
+import fon.bg.ac.rs.istanisic.dto.CityUpdateDTO;
 import fon.bg.ac.rs.istanisic.model.City;
 import fon.bg.ac.rs.istanisic.repository.CityRepository;
 import fon.bg.ac.rs.istanisic.repository.PersonRepository;
@@ -37,7 +38,7 @@ public class CityService {
         cityRepository.deleteByPostalCode(postalcode);
     }
 
-    public CityDTO updateCity(@Valid CityDTO cityDTO) throws Exception{
+    public CityDTO updateCity(@Valid CityUpdateDTO cityDTO) throws Exception{
         int postalCode = cityDTO.postalCode();
         Optional<City> foundCity = cityRepository.findByPostalCode(postalCode);
         if (foundCity.isEmpty()) {

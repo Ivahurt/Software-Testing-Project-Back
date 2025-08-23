@@ -2,6 +2,7 @@ package fon.bg.ac.rs.istanisic.service;
 
 import fon.bg.ac.rs.istanisic.converter.CityConverter;
 import fon.bg.ac.rs.istanisic.dto.CityDTO;
+import fon.bg.ac.rs.istanisic.dto.CityUpdateDTO;
 import fon.bg.ac.rs.istanisic.model.City;
 import fon.bg.ac.rs.istanisic.repository.CityRepository;
 import jakarta.transaction.Transactional;
@@ -90,11 +91,11 @@ class CityServiceTest {
     @Test
     @DisplayName("Update non existing city throws exception")
     void updateNonExistingCity() {
-        CityDTO dto = new CityDTO(1L, 99999, "Nepostojece", 1000);
+        CityUpdateDTO updateDTO = new CityUpdateDTO(99999, 1000);
 
-        when(cityRepository.findByPostalCode(dto.postalCode())).thenReturn(Optional.empty());
+        when(cityRepository.findByPostalCode(updateDTO.postalCode())).thenReturn(Optional.empty());
 
-        assertThatThrownBy(() -> cityService.updateCity(dto))
+        assertThatThrownBy(() -> cityService.updateCity(updateDTO))
                 .isInstanceOf(Exception.class)
                 .hasMessage("Mesto ne postoji");
 
@@ -104,19 +105,21 @@ class CityServiceTest {
     @Test
     @DisplayName("Update city successfully")
     void updateCitySuccess() throws Exception {
-        CityDTO dto = new CityDTO(1L, 11000, "Beograd", 2000000);
+        CityUpdateDTO updateDTO = new CityUpdateDTO(11000, 2000000);
         City entity = new City(1L, 11000, "Beograd", 1500000);
+        CityDTO returnedDTO = new CityDTO(1L, 11000, "Beograd", 2000000);
 
-        when(cityRepository.findByPostalCode(dto.postalCode())).thenReturn(Optional.of(entity));
+        when(cityRepository.findByPostalCode(updateDTO.postalCode())).thenReturn(Optional.of(entity));
         when(cityRepository.save(entity)).thenReturn(entity);
-        when(cityConverter.toDto(entity)).thenReturn(dto);
+        when(cityConverter.toDto(entity)).thenReturn(returnedDTO);
 
-        var result = cityService.updateCity(dto);
+        var result = cityService.updateCity(updateDTO);
 
-        assertThat(result).isEqualTo(dto);
+        assertThat(result).isEqualTo(returnedDTO);
         assertThat(entity.getPopulation()).isEqualTo(2000000);
 
         verify(cityRepository, times(1)).save(entity);
         verify(cityConverter, times(1)).toDto(entity);
     }
+
 }

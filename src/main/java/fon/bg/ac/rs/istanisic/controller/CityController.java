@@ -1,6 +1,7 @@
 package fon.bg.ac.rs.istanisic.controller;
 
 import fon.bg.ac.rs.istanisic.dto.CityDTO;
+import fon.bg.ac.rs.istanisic.dto.CityUpdateDTO;
 import fon.bg.ac.rs.istanisic.model.City;
 import fon.bg.ac.rs.istanisic.service.CityService;
 import jakarta.validation.Valid;
@@ -36,7 +37,7 @@ public class CityController {
     }
 
     @PutMapping
-    public ResponseEntity<CityDTO> alterCity(@Valid @RequestBody CityDTO cityDTO) throws Exception {
+    public ResponseEntity<CityDTO> alterCity(@Valid @RequestBody CityUpdateDTO cityDTO) throws Exception {
         return ResponseEntity.ok(cityService.updateCity(cityDTO));
     }
 }
