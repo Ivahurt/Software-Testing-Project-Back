@@ -2,6 +2,7 @@ package fon.bg.ac.rs.istanisic.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fon.bg.ac.rs.istanisic.service.PersonResidenceService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,6 +37,10 @@ class PersonControllerTest {
 
     @MockBean
     private PersonService personService;
+
+    @MockBean
+    private PersonResidenceService personResidenceService;
+
 
     @Autowired
     private ObjectMapper objectMapper;

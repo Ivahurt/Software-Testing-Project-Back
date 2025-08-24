@@ -32,4 +32,5 @@ public class PersonResidenceHistory {
 
     @Column(name = "residence_end")
     private LocalDate residenceEnd;
+
 }

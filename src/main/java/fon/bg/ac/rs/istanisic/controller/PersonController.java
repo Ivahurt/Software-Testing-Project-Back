@@ -1,7 +1,10 @@
 package fon.bg.ac.rs.istanisic.controller;
 
 import fon.bg.ac.rs.istanisic.dto.PersonDTO;
+import fon.bg.ac.rs.istanisic.dto.PersonResidenceHistoryDTO;
 import fon.bg.ac.rs.istanisic.dto.PersonUpdateDTO;
+import fon.bg.ac.rs.istanisic.model.PersonResidenceHistory;
+import fon.bg.ac.rs.istanisic.service.PersonResidenceService;
 import fon.bg.ac.rs.istanisic.service.PersonService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PersonController {
     private final PersonService personService;
+    private final PersonResidenceService personResidenceService;
 
     @GetMapping("/all")
     public ResponseEntity<List<PersonDTO>> getAll() {
@@ -39,5 +43,10 @@ public class PersonController {
                                                  PersonUpdateDTO personDTO) throws Exception {
         return ResponseEntity.ok(
                 personService.updatePerson(personDTO));
+    }
+
+    @GetMapping("/{uniqueId}")
+    public ResponseEntity<List<PersonResidenceHistoryDTO>> getPersonResidenceHistory(@PathVariable Long uniqueId) throws Exception{
+        return ResponseEntity.ok(personResidenceService.getPersonResidenceHistory(uniqueId));
     }
 }
