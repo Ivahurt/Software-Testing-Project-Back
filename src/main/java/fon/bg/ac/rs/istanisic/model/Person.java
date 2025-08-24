@@ -23,14 +23,12 @@ public class Person {
     private Long id;
 
     @NotNull
-    @Size(max = 30, min = 2, message = "Person name cannot " +
-            "be longer than 30 characters or shorter than 2 characters.")
+    @Size(max = 30, min = 2, message = "Ime osobe mora imati između 2 i 30 karaktera.")
     @Column(name = "first_name")
     private String firstName;
 
     @NotNull
-    @Size(max = 30, min = 2, message = "Perosn last name cannot " +
-            "be longer than 30 characters or shorter than 2 characters.")
+    @Size(max = 30, min = 2, message = "Prezime osobe mora imati između 2 i 30 karaktera.")
     @Column(name = "last_name")
     private String lastName;
 

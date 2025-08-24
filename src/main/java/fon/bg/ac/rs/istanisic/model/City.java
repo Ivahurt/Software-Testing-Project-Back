@@ -26,8 +26,7 @@ public class City {
     private int postalCode;
 
     @NotNull
-    @Size(min = 2, max = 30, message = "City name must be " +
-            "between 2 and 30 characters.")
+    @Size(min = 2, max = 30, message = "Naziv grada mora imati između 2 i 30 karaktera")
     private String name;
     private Integer population;
 }
