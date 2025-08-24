@@ -7,7 +7,7 @@ begin
         where person_id = new.person_id
           and residence_end is null
     ) then
-        raise exception 'osoba % već ima aktivno mesto stanovanja.',
+        raise exception 'Osoba % već ima aktivno mesto stanovanja.',
             new.person_id;
     end if;
 

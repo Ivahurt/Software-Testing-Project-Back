@@ -10,7 +10,7 @@ begin
     limit 1;
 
     if existing_person is not null then
-        raise exception 'Personal id % already existsd: %.', new.unique_identification_number, existing_person.id;
+        raise exception 'Osoba sa id-em % već postoji: %', new.unique_identification_number, existing_person.id;
     end if;
 
     return new;

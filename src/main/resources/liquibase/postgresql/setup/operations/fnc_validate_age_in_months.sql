@@ -7,7 +7,7 @@ begin
                     extract(month from age(current_date, new.date_of_birth));
 
     if new.age_in_months is not null and new.age_in_months != expected_age then
-        raise exception 'Age in month value is incorrect!';
+        raise exception 'Broj godina u mesecima je netačno';
 
     end if;
 
