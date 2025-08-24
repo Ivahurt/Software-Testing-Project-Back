@@ -22,6 +22,8 @@ public class CityConverterTest {
         assertThat(entity).isNotNull();
         assertThat(entity.getId()).isEqualTo(1L);
         assertThat(entity.getName()).isEqualTo("Beograd");
+        assertThat(entity.getPostalCode()).isEqualTo(1111);
+        assertThat(entity.getPopulation()).isEqualTo(70000);
     }
 
     @Test
@@ -37,6 +39,8 @@ public class CityConverterTest {
         assertNotNull(dto);
         assertEquals(city.getId(), dto.id());
         assertEquals(city.getName(), dto.name());
+        assertEquals(city.getPostalCode(), dto.postalCode());
+        assertEquals(city.getPopulation(), dto.population());
     }
 
     @Test
