@@ -29,6 +29,8 @@ public class PersonConverterTest {
         assertThat(entity.getFirstName()).isEqualTo("Pera");
         assertThat(entity.getLastName()).isEqualTo("Peric");
         assertThat(entity.getUniqueIdentificationNumber()).isEqualTo(2888028903L);
+        assertThat(entity.getCityOfBirth().getName()).isEqualTo("Beograd");
+        assertThat(entity.getCityOfResidence().getName()).isEqualTo("Beograd");
     }
 
     @Test
@@ -56,6 +58,9 @@ public class PersonConverterTest {
         assertEquals(person.getFirstName(), dto.firstName());
         assertEquals(person.getLastName(), dto.lastName());
         assertEquals(person.getUniqueIdentificationNumber(), dto.uniqueIdentificationNumber());
+        assertEquals(person.getCityOfBirth().getName(), dto.cityBirthName());
+        assertEquals(person.getCityOfResidence().getName(), dto.cityResidenceName());
+
     }
 
     @Test
