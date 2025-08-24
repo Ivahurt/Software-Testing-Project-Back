@@ -6,6 +6,7 @@ import fon.bg.ac.rs.istanisic.dto.CityUpdateDTO;
 import fon.bg.ac.rs.istanisic.model.City;
 import fon.bg.ac.rs.istanisic.repository.CityRepository;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,8 @@ class CityServiceTest {
     @MockBean
     private CityConverter cityConverter;
 
-    private final CityService cityService;
-
     @Autowired
-    public CityServiceTest(CityService cityService) {
-        this.cityService = cityService;
-    }
+    private CityService cityService;
 
     @Test
     @DisplayName("Get all cities empty")

@@ -34,6 +34,7 @@ public class PersonService {
         Person person = personConverter.toEntity(personDTO);
         Optional<City> cityOfBirth = cityRepository.findByName(personDTO.cityBirthName());
         Optional<City> cityOfResidence = cityRepository.findByName(personDTO.cityResidenceName());
+
         if (cityOfBirth.isEmpty()) {
             throw new Exception("Mesto rođenja ne može da bude prazno!");
         }
@@ -44,8 +45,24 @@ public class PersonService {
 
         person.setCityOfBirth(cityOfBirth.get());
         person.setCityOfResidence(cityOfResidence.get());
-        return personConverter.toDto(personRepository.save(person));
 
+        person = personRepository.save(person);
+
+        PersonResidenceHistoryId prhId = new PersonResidenceHistoryId(
+                person.getId(),
+                person.getCityOfResidence().getId(),
+                LocalDate.now()
+        );
+
+        PersonResidenceHistory personResidenceHistory = new PersonResidenceHistory();
+        personResidenceHistory.setPersonResidenceHistoryId(prhId);
+        personResidenceHistory.setPerson(person);
+        personResidenceHistory.setCity(person.getCityOfResidence());
+        personResidenceHistory.setResidenceEnd(null);
+
+        personResidenceService.savePersonResidence(personResidenceHistory);
+
+        return personConverter.toDto(person);
     }
 
     @Transactional
