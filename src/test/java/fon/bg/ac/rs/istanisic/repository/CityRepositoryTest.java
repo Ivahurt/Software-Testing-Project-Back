@@ -25,7 +25,7 @@ class CityRepositoryTest {
     @Autowired
     private PersonRepository personRepository;
 
-    private final City exampleCity = new City(null, 15000, "Bor", 20000);
+    private final City exampleCity = new City(1L, 15000, "Bor", 20000);
 
     @BeforeEach
     void setUp() {

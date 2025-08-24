@@ -30,7 +30,7 @@ class PersonRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        exampleCity = cityRepository.save(new City(null, 15000, "Bor", 20000));
+        exampleCity = cityRepository.save(new City(1L, 15000, "Bor", 20000));
 
         examplePerson = new Person();
         examplePerson.setUniqueIdentificationNumber(123456789L);
