@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "person_residence_history")
 public class PersonResidenceHistory {
 
     @EmbeddedId

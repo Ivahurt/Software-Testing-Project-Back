@@ -1,14 +1,21 @@
 package fon.bg.ac.rs.istanisic.service;
 
+import fon.bg.ac.rs.istanisic.converter.PaymentConverter;
 import fon.bg.ac.rs.istanisic.converter.PersonConverter;
+import fon.bg.ac.rs.istanisic.dto.PaymentDTO;
 import fon.bg.ac.rs.istanisic.dto.PersonDTO;
 import fon.bg.ac.rs.istanisic.dto.PersonUpdateDTO;
 import fon.bg.ac.rs.istanisic.model.City;
+import fon.bg.ac.rs.istanisic.model.Payment;
 import fon.bg.ac.rs.istanisic.model.Person;
 import fon.bg.ac.rs.istanisic.model.PersonResidenceHistory;
 import fon.bg.ac.rs.istanisic.repository.CityRepository;
+import fon.bg.ac.rs.istanisic.repository.PaymentRepository;
 import fon.bg.ac.rs.istanisic.repository.PersonRepository;
+import fon.bg.ac.rs.istanisic.repository.foreign_key.PaymentId;
 import fon.bg.ac.rs.istanisic.repository.foreign_key.PersonResidenceHistoryId;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +32,10 @@ public class PersonService {
     private final CityRepository cityRepository;
 
     private final PersonResidenceService personResidenceService;
+
+    private final PaymentConverter paymentConverter;
+    private final PaymentRepository paymentRepository;
+
 
     public List<PersonDTO> getAll() {
         return personConverter.listToDTO(personRepository.findAll());

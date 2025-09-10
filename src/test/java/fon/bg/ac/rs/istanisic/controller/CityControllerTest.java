@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(MockitoExtension.class)
 @WebMvcTest(controllers = CityController.class)
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 class CityControllerTest {
 
     @Autowired
@@ -61,7 +61,7 @@ class CityControllerTest {
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString();
 
-        List<CityDTO> responseList = objectMapper.readValue(responseJson, new TypeReference<>() {});
+        List<CityDTO> responseList = objectMapper.readValue(responseJson, new TypeReference<List<CityDTO>>() {});
         assertThat(responseList).containsExactlyInAnyOrderElementsOf(citiesDisplay);
     }
 

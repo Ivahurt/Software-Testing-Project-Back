@@ -44,6 +44,17 @@
                  relativeToChangelogFile="true"/>
     </changeSet>
 
+    <changeSet id="create_payment" author="istanisic">
+        <sqlFile path="ddl/create_payment.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="insert_to_payment" author="istanisic">
+        <sqlFile path="dml/insert_to_payment.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
+
     <changeSet id="validate_age_in_months" author="istanisic">
         <sqlFile path="operations/fnc_validate_age_in_months.sql"
                  relativeToChangelogFile="true"
@@ -90,8 +101,20 @@
                  splitStatements="false"/>
     </changeSet>
 
-    <changeSet id="triger_insert_person_residence" author="istanisic">
+    <changeSet id="trigger_insert_person_residence" author="istanisic">
         <sqlFile path="operations/trigger_before_insert_person_residence.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="update_residence_history.sql" author="istanisic">
+        <sqlFile path="operations/fnc_update_residence_history.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="trigger_after_update_person_residence" author="istanisic">
+        <sqlFile path="operations/trigger_after_update_person_residence.sql"
                  relativeToChangelogFile="true"
                  splitStatements="false"/>
     </changeSet>
