@@ -95,6 +95,18 @@
                  splitStatements="false"/>
     </changeSet>
 
+    <changeSet id="forbid_direct_age_insert" author="istanisic">
+        <sqlFile path="operations/fnc_forbid_direct_age_insert.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="trigger_forbid_age_insert" author="istanisic">
+        <sqlFile path="operations/trigger_forbid_age_insert.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
     <changeSet id="check_person_residence_history" author="istanisic">
         <sqlFile path="operations/fnc_check_person_residence_history.sql"
                  relativeToChangelogFile="true"
