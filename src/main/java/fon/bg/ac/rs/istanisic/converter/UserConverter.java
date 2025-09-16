@@ -4,7 +4,9 @@ import fon.bg.ac.rs.istanisic.dto.CityDTO;
 import fon.bg.ac.rs.istanisic.dto.UserDTO;
 import fon.bg.ac.rs.istanisic.model.City;
 import fon.bg.ac.rs.istanisic.model.User;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserConverter implements DTOEntityConverter<UserDTO, User>{
     @Override
     public User toEntity(UserDTO userDTO) {

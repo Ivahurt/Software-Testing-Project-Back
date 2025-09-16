@@ -7,10 +7,7 @@ import fon.bg.ac.rs.istanisic.service.CityService;
 import fon.bg.ac.rs.istanisic.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,4 +24,14 @@ public class UserController {
         return ResponseEntity.ok(userService.getAll());
     }
 
+    @GetMapping("/")
+    public ResponseEntity<List<User>> getAllUsers() throws Exception{
+        return ResponseEntity.ok(userService.getAllUsers());
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> saveUser(@RequestBody UserDTO user) throws Exception{
+        userService.saveUser(user);
+        return ResponseEntity.noContent().build();
+    }
 }
