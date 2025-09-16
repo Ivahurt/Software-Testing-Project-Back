@@ -107,7 +107,7 @@
                  splitStatements="false"/>
     </changeSet>
 
-    <changeSet id="update_residence_history.sql" author="istanisic">
+    <changeSet id="update_residence_history" author="istanisic">
         <sqlFile path="operations/fnc_update_residence_history.sql"
                  relativeToChangelogFile="true"
                  splitStatements="false"/>
@@ -119,5 +119,26 @@
                  splitStatements="false"/>
     </changeSet>
 
+    <changeSet id="create_users" author="istanisic">
+        <sqlFile path="ddl/create_users.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="insert_to_users" author="istanisic">
+        <sqlFile path="dml/insert_to_users.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="check_single_admin" author="istanisic">
+        <sqlFile path="operations/fnc_check_single_admin.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="trigger_single_admin" author="istanisic">
+        <sqlFile path="operations/trigger_single_admin.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
 
 </databaseChangeLog>
