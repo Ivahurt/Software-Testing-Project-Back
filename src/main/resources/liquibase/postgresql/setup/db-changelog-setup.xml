@@ -62,6 +62,18 @@
                  relativeToChangelogFile="true"/>
     </changeSet>
 
+    <changeSet id="fnc_update_sum_of_payments" author="istanisic">
+        <sqlFile path="operations/fnc_update_sum_of_payments.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="trigger_update_sum_of_payments" author="istanisic">
+        <sqlFile path="operations/trigger_update_sum_of_payments.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
     <changeSet id="insert_to_payment" author="istanisic">
         <sqlFile path="dml/insert_to_payment.sql"
                  relativeToChangelogFile="true"/>
@@ -78,7 +90,6 @@
                  relativeToChangelogFile="true"
                  splitStatements="false"/>
     </changeSet>
-
 
     <changeSet id="create_view_people_from_belgrade" author="istanisic">
         <sqlFile path="operations/view_select_people_from_belgrade.sql"
