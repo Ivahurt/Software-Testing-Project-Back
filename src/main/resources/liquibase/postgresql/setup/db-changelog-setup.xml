@@ -29,6 +29,19 @@
                  relativeToChangelogFile="true"/>
     </changeSet>
 
+    <changeSet id="forbid_direct_age_insert" author="istanisic">
+        <sqlFile path="operations/fnc_forbid_direct_age_insert.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="trigger_forbid_age_insert" author="istanisic">
+        <sqlFile path="operations/trigger_forbid_age_insert.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+
     <changeSet id="insert_to_person" author="istanisic">
         <sqlFile path="dml/insert_to_person.sql"
                  relativeToChangelogFile="true"/>
@@ -54,17 +67,18 @@
                  relativeToChangelogFile="true"/>
     </changeSet>
 
-
-    <changeSet id="validate_age_in_months" author="istanisic">
-        <sqlFile path="operations/fnc_validate_age_in_months.sql"
+    <changeSet id="fnc_forbid_direct_sum_of_payments" author="istanisic">
+        <sqlFile path="operations/fnc_forbid_direct_sum_of_payments.sql"
                  relativeToChangelogFile="true"
                  splitStatements="false"/>
     </changeSet>
 
-    <changeSet id="trigger_validate_age_in_months" author="istanisic">
-        <sqlFile path="operations/trigger_validate_age_in_months.sql"
-                 relativeToChangelogFile="true"/>
+    <changeSet id="trigger_forbid_direct_sum_of_payments" author="istanisic">
+        <sqlFile path="operations/trigger_forbid_direct_sum_of_payments.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
     </changeSet>
+
 
     <changeSet id="create_view_people_from_belgrade" author="istanisic">
         <sqlFile path="operations/view_select_people_from_belgrade.sql"
@@ -95,17 +109,6 @@
                  splitStatements="false"/>
     </changeSet>
 
-    <changeSet id="forbid_direct_age_insert" author="istanisic">
-        <sqlFile path="operations/fnc_forbid_direct_age_insert.sql"
-                 relativeToChangelogFile="true"
-                 splitStatements="false"/>
-    </changeSet>
-
-    <changeSet id="trigger_forbid_age_insert" author="istanisic">
-        <sqlFile path="operations/trigger_forbid_age_insert.sql"
-                 relativeToChangelogFile="true"
-                 splitStatements="false"/>
-    </changeSet>
 
     <changeSet id="check_person_residence_history" author="istanisic">
         <sqlFile path="operations/fnc_check_person_residence_history.sql"
