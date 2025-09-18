@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS person (
     NOT NULL CHECK (LENGTH(last_name) BETWEEN 2 AND 30 AND last_name ~ '^[A-ZČĆŠŽĐ][a-zčćšžđ]{1,}$'),
     date_of_birth DATE NOT NULL,
     age_in_months INT,
+    age_in_months1 INT DEFAULT NULL CHECK (age_in_months1 IS NULL),
     unique_identification_number BIGINT NOT NULL UNIQUE,
     sum_of_payments BIGINT DEFAULT 0,
     city_birth_id BIGINT,

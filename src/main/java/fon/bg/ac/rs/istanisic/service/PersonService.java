@@ -42,6 +42,9 @@ public class PersonService {
     }
 
     public PersonDTO savePerson(PersonDTO personDTO) throws Exception {
+        System.out.println("Cuvanje osobe dto");
+        System.out.println(personDTO);
+
         Person person = personConverter.toEntity(personDTO);
         Optional<City> cityOfBirth = cityRepository.findByName(personDTO.cityBirthName());
         Optional<City> cityOfResidence = cityRepository.findByName(personDTO.cityResidenceName());
@@ -56,6 +59,10 @@ public class PersonService {
 
         person.setCityOfBirth(cityOfBirth.get());
         person.setCityOfResidence(cityOfResidence.get());
+
+        System.out.println("Cuvanje osobe u bazu");
+        System.out.println(person);
+
 
         person = personRepository.save(person);
 

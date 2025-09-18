@@ -32,6 +32,7 @@ public class PersonConverter implements DTOEntityConverter<PersonDTO, Person>{
                 person.getFirstName(),
                 person.getLastName(),
                 person.getDateOfBirth(),
+                person.getAgeInMonths1(),
                 person.getUniqueIdentificationNumber(),
                 person.getCityOfBirth().getName(),
                 person.getCityOfResidence().getName()

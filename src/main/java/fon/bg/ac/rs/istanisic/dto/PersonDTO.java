@@ -7,6 +7,7 @@ public record PersonDTO (
         String firstName,
         String lastName,
         LocalDate dateOfBirth,
+        Integer ageInMonths1,
         Long uniqueIdentificationNumber,
         String cityBirthName,
         String cityResidenceName

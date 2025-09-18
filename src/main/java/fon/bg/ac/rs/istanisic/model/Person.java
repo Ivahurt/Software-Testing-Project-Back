@@ -37,8 +37,13 @@ public class Person {
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
-    @Column(name = "age_in_months")
+//    @Column(name = "age_in_months")
+    @Transient
     private Integer ageInMonths;
+
+//    @Column(name = "age_in_months1")
+    @Transient
+    private Integer ageInMonths1;
 
     @NotNull
     @Column(name = "unique_identification_number")

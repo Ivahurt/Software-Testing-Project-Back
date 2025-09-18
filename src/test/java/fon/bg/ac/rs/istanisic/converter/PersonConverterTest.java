@@ -10,7 +10,6 @@ import java.time.LocalDate;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 @SpringBootTest
 public class PersonConverterTest {
@@ -18,9 +17,16 @@ public class PersonConverterTest {
 
     @Test
     void testToEntityNotNull() {
-        PersonDTO dto = new PersonDTO(1L, "Pera", "Peric"
-                ,LocalDate.of(2000,3,4), 2888028903L,
-                "Beograd", "Beograd");
+        PersonDTO dto = new PersonDTO(
+                1L,
+                "Pera",
+                "Peric",
+                LocalDate.of(2000, 3, 4),
+                100, // ageInMonths1
+                2888028903L,
+                "Beograd",
+                "Beograd"
+        );
 
         Person entity = personConverter.toEntity(dto);
 
@@ -45,7 +51,7 @@ public class PersonConverterTest {
                 .id(2L)
                 .firstName("Pera")
                 .lastName("Peric")
-                .dateOfBirth(LocalDate.of(2000,3,4))
+                .dateOfBirth(LocalDate.of(2000, 3, 4))
                 .ageInMonths(100)
                 .uniqueIdentificationNumber(999229939L)
                 .cityOfBirth(city)
@@ -53,14 +59,15 @@ public class PersonConverterTest {
                 .build();
 
         PersonDTO dto = personConverter.toDto(person);
+
         assertNotNull(dto);
         assertEquals(person.getId(), dto.id());
         assertEquals(person.getFirstName(), dto.firstName());
         assertEquals(person.getLastName(), dto.lastName());
+        assertEquals(person.getDateOfBirth(), dto.dateOfBirth());
         assertEquals(person.getUniqueIdentificationNumber(), dto.uniqueIdentificationNumber());
         assertEquals(person.getCityOfBirth().getName(), dto.cityBirthName());
         assertEquals(person.getCityOfResidence().getName(), dto.cityResidenceName());
-
     }
 
     @Test
@@ -72,5 +79,4 @@ public class PersonConverterTest {
     public void testToDtoNull() {
         assertNull(personConverter.toDto(null));
     }
-
 }

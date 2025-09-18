@@ -67,8 +67,8 @@ class PersonServiceTest {
 
         List<Person> persons = List.of(person1, person2);
 
-        PersonDTO dto1 = new PersonDTO(1L, "Pera", "Peric", null, null, null, null);
-        PersonDTO dto2 = new PersonDTO(2L, "Mika", "Mikic", null, null, null, null);
+        PersonDTO dto1 = new PersonDTO(1L, "Pera", "Peric", null, null, null, null, null);
+        PersonDTO dto2 = new PersonDTO(2L, "Mika", "Mikic", null, null, null, null, null);
         List<PersonDTO> dtos = List.of(dto1, dto2);
 
         when(personRepository.findAll()).thenReturn(persons);
@@ -88,6 +88,7 @@ class PersonServiceTest {
     void savePersonValid() throws Exception {
         PersonDTO dto = new PersonDTO(1L, "Pera", "Peric",
                 LocalDate.of(1995, 5, 15),
+                0,
                 111222222L,
                 "Novi Sad", "Beograd");
 
@@ -117,6 +118,7 @@ class PersonServiceTest {
         PersonDTO personDTO = new PersonDTO(
                 1L, "Nikola", "Stanisic",
                 LocalDate.of(1995, 5, 15),
+                0,
                 12345L,
                 "Nepostojeci Grad",
                 "Novi Sad"
@@ -138,6 +140,7 @@ class PersonServiceTest {
         PersonDTO personDTO = new PersonDTO(
                 1L, "Nikola", "Nikolic",
                 LocalDate.of(1995, 5, 15),
+                0,
                 12345L,
                 "Novi Sad",
                 "Nepostojeci Grad"
@@ -209,6 +212,7 @@ class PersonServiceTest {
 
         PersonDTO expectedDto = new PersonDTO(1L, "Pera", "Peric",
                 LocalDate.of(1995, 5, 15),
+                0,
                 111222222L,
                 "Novi Sad", "Beograd");
 
