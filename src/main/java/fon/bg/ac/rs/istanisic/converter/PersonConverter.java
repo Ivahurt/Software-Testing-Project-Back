@@ -16,6 +16,7 @@ public class PersonConverter implements DTOEntityConverter<PersonDTO, Person>{
                     .lastName(personDTO.lastName())
                     .dateOfBirth(personDTO.dateOfBirth())
                         .uniqueIdentificationNumber(personDTO.uniqueIdentificationNumber())
+                        .sumOfPayments(personDTO.sumOfPayments())
                     .cityOfBirth(City.builder()
                             .name(personDTO.cityBirthName())
                             .build())
@@ -33,6 +34,7 @@ public class PersonConverter implements DTOEntityConverter<PersonDTO, Person>{
                 person.getLastName(),
                 person.getDateOfBirth(),
                 person.getAgeInMonths1(),
+                person.getSumOfPayments(),
                 person.getUniqueIdentificationNumber(),
                 person.getCityOfBirth().getName(),
                 person.getCityOfResidence().getName()

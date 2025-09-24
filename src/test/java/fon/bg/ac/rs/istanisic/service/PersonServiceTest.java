@@ -1,5 +1,6 @@
 package fon.bg.ac.rs.istanisic.service;
 
+import fon.bg.ac.rs.istanisic.converter.PaymentConverter;
 import fon.bg.ac.rs.istanisic.converter.PersonConverter;
 import fon.bg.ac.rs.istanisic.dto.PersonDTO;
 import fon.bg.ac.rs.istanisic.dto.PersonUpdateDTO;
@@ -7,13 +8,16 @@ import fon.bg.ac.rs.istanisic.model.City;
 import fon.bg.ac.rs.istanisic.model.Person;
 import fon.bg.ac.rs.istanisic.model.PersonResidenceHistory;
 import fon.bg.ac.rs.istanisic.repository.CityRepository;
+import fon.bg.ac.rs.istanisic.repository.PaymentRepository;
 import fon.bg.ac.rs.istanisic.repository.PersonRepository;
 import fon.bg.ac.rs.istanisic.repository.foreign_key.PersonResidenceHistoryId;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -27,16 +31,20 @@ import static org.mockito.ArgumentMatchers.any;
 @SpringBootTest
 class PersonServiceTest {
 
-    @Mock
+    @MockBean
     private PersonRepository personRepository;
-    @Mock
+    @MockBean
     private PersonConverter personConverter;
-    @Mock
+    @MockBean
     private CityRepository cityRepository;
-    @Mock
+    @MockBean
     private PersonResidenceService personResidenceService;
+    @MockBean
+    private PaymentConverter paymentConverter;
+    @MockBean
+    private PaymentRepository paymentRepository;
 
-    @InjectMocks
+    @Autowired
     private PersonService personService;
 
     @Test
@@ -67,8 +75,8 @@ class PersonServiceTest {
 
         List<Person> persons = List.of(person1, person2);
 
-        PersonDTO dto1 = new PersonDTO(1L, "Pera", "Peric", null, null, null, null, null);
-        PersonDTO dto2 = new PersonDTO(2L, "Mika", "Mikic", null, null, null, null, null);
+        PersonDTO dto1 = new PersonDTO(1L, "Pera", "Peric", null, null, null, null, null, null);
+        PersonDTO dto2 = new PersonDTO(2L, "Mika", "Mikic", null, null, null, null, null, null);
         List<PersonDTO> dtos = List.of(dto1, dto2);
 
         when(personRepository.findAll()).thenReturn(persons);
@@ -89,6 +97,7 @@ class PersonServiceTest {
         PersonDTO dto = new PersonDTO(1L, "Pera", "Peric",
                 LocalDate.of(1995, 5, 15),
                 0,
+                1455L,
                 111222222L,
                 "Novi Sad", "Beograd");
 
@@ -119,6 +128,7 @@ class PersonServiceTest {
                 1L, "Nikola", "Stanisic",
                 LocalDate.of(1995, 5, 15),
                 0,
+                2233L,
                 12345L,
                 "Nepostojeci Grad",
                 "Novi Sad"
@@ -141,6 +151,7 @@ class PersonServiceTest {
                 1L, "Nikola", "Nikolic",
                 LocalDate.of(1995, 5, 15),
                 0,
+                70093L,
                 12345L,
                 "Novi Sad",
                 "Nepostojeci Grad"
@@ -213,6 +224,7 @@ class PersonServiceTest {
         PersonDTO expectedDto = new PersonDTO(1L, "Pera", "Peric",
                 LocalDate.of(1995, 5, 15),
                 0,
+                133L,
                 111222222L,
                 "Novi Sad", "Beograd");
 

@@ -6,21 +6,18 @@ import fon.bg.ac.rs.istanisic.dto.PaymentDTO;
 import fon.bg.ac.rs.istanisic.dto.PersonDTO;
 import fon.bg.ac.rs.istanisic.dto.PersonUpdateDTO;
 import fon.bg.ac.rs.istanisic.model.City;
-import fon.bg.ac.rs.istanisic.model.Payment;
 import fon.bg.ac.rs.istanisic.model.Person;
 import fon.bg.ac.rs.istanisic.model.PersonResidenceHistory;
 import fon.bg.ac.rs.istanisic.repository.CityRepository;
 import fon.bg.ac.rs.istanisic.repository.PaymentRepository;
 import fon.bg.ac.rs.istanisic.repository.PersonRepository;
-import fon.bg.ac.rs.istanisic.repository.foreign_key.PaymentId;
 import fon.bg.ac.rs.istanisic.repository.foreign_key.PersonResidenceHistoryId;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,9 +39,6 @@ public class PersonService {
     }
 
     public PersonDTO savePerson(PersonDTO personDTO) throws Exception {
-        System.out.println("Cuvanje osobe dto");
-        System.out.println(personDTO);
-
         Person person = personConverter.toEntity(personDTO);
         Optional<City> cityOfBirth = cityRepository.findByName(personDTO.cityBirthName());
         Optional<City> cityOfResidence = cityRepository.findByName(personDTO.cityResidenceName());
@@ -59,10 +53,6 @@ public class PersonService {
 
         person.setCityOfBirth(cityOfBirth.get());
         person.setCityOfResidence(cityOfResidence.get());
-
-        System.out.println("Cuvanje osobe u bazu");
-        System.out.println(person);
-
 
         person = personRepository.save(person);
 
@@ -126,4 +116,30 @@ public class PersonService {
         return personConverter.toDto(personRepository.save(updatedPerson));
     }
 
+    public PersonDTO getPersonAgeInMonths(Long uniqueId) throws Exception{
+        Optional<Person> foundPerson = personRepository.findByUniqueIdentificationNumber(uniqueId);
+        if (foundPerson.isEmpty()) {
+            throw new Exception("Osoba ne postoji");
+        }
+
+        Person person = foundPerson.get();
+        LocalDate today = LocalDate.now();
+        Integer ageInMonths1 = (int) ChronoUnit.MONTHS.between(person.getDateOfBirth(), today);
+
+        person.setAgeInMonths1(ageInMonths1);
+        return personConverter.toDto(person);
+    }
+
+    public PersonDTO getPersonSumPayments(Long uniqueId) throws Exception{
+        Optional<Person> foundPerson = personRepository.findByUniqueIdentificationNumber(uniqueId);
+        if (foundPerson.isEmpty()) {
+            throw new Exception("Osoba ne postoji");
+        }
+
+        Person person = foundPerson.get();
+        System.out.println("Pronadjena je osoba za ispis svih njenih isplata");
+        System.out.println(person);
+
+        return personConverter.toDto(person);
+    }
 }

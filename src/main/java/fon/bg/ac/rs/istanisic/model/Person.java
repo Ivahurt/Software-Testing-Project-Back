@@ -45,6 +45,9 @@ public class Person {
     @Transient
     private Integer ageInMonths1;
 
+    @Column(name = "sum_of_payments")
+    private Long sumOfPayments;
+
     @NotNull
     @Column(name = "unique_identification_number")
     private Long uniqueIdentificationNumber;

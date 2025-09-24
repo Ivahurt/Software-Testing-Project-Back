@@ -65,4 +65,13 @@ public class PersonController {
         return ResponseEntity.ok(paymentService.getPersonPayments(uniqueId));
     }
 
+    @GetMapping("/sum-payments/{uniqueId}")
+    public ResponseEntity<PersonDTO> getPersonSumPayments(@PathVariable Long uniqueId) throws Exception{
+        return ResponseEntity.ok(personService.getPersonSumPayments(uniqueId));
+    }
+
+    @GetMapping("/age/{uniqueId}")
+    public ResponseEntity<PersonDTO> getPersonAgeInMonths(@PathVariable Long uniqueId) throws Exception{
+        return ResponseEntity.ok(personService.getPersonAgeInMonths(uniqueId));
+    }
 }

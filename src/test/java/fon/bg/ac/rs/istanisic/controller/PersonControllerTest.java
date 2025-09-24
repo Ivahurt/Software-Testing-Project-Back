@@ -55,18 +55,18 @@ class PersonControllerTest {
     void setUp() {
         val person1 = new PersonDTO(
                 1L, "Pera", "Peric",
-                LocalDate.of(2000, 1, 1), 0, 13453213L,
+                LocalDate.of(2000, 1, 1), 0, 1200L,13453213L,
                 "Zajecar", "Zajecar"
         );
         val person2 = new PersonDTO(
                 2L, "Sava", "Savic",
-                LocalDate.of(1990, 2, 2), 0, 12223213L,
+                LocalDate.of(1990, 2, 2), 0, 120L, 12223213L,
                 "Beograd", "Beograd"
         );
 
         personSave = new PersonDTO(
                 3L, "Sara", "Saric",
-                LocalDate.of(2001, 10, 10), 0, 12223777L,
+                LocalDate.of(2001, 10, 10), 0, 120L,12223777L,
                 "Zajecar", "Beograd"
         );
 
