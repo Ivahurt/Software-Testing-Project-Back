@@ -50,7 +50,7 @@ class PersonServiceTest {
     private PersonService personService;
 
     @Test
-    @DisplayName("Get all persons - empty list")
+    @DisplayName("Vraća praznu listu kada nema unetih osoba")
     void getAllPersonsEmpty() {
         when(personRepository.findAll()).thenReturn(List.of());
         when(personConverter.listToDTO(List.of())).thenReturn(List.of());
@@ -63,7 +63,7 @@ class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Get all persons - non-empty list")
+    @DisplayName("Vraća sve osobe kada postoji više unetih osoba")
     void getAllPersonsNonEmpty() {
         Person person1 = new Person();
         person1.setId(1L);
@@ -94,7 +94,7 @@ class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Save person - valid data")
+    @DisplayName("Uspešno čuva osobu kada su podaci ispravni")
     void savePersonValid() throws Exception {
         PersonDTO dto = new PersonDTO(1L, "Pera", "Peric",
                 LocalDate.of(1995, 5, 15),
@@ -124,7 +124,7 @@ class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Save person throws exception if city of birth missing")
+    @DisplayName("Baca grešku ako mesto rođenja ne postoji")
     void savePersonCityOfBirthMissing() {
         PersonDTO personDTO = new PersonDTO(
                 1L, "Nikola", "Stanisic",
@@ -147,7 +147,7 @@ class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Save person throws exception if city of residence missing")
+    @DisplayName("Baca grešku ako mesto stanovanja ne postoji")
     void savePersonCityOfResidenceMissing() {
         PersonDTO personDTO = new PersonDTO(
                 1L, "Nikola", "Nikolic",
@@ -172,7 +172,7 @@ class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Delete person successfully")
+    @DisplayName("Uspešno briše osobu")
     void deletePersonValid() throws Exception {
         Long id = 12345L;
         Person foundPerson = new Person();
@@ -186,7 +186,7 @@ class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Delete person throws exception if id is null")
+    @DisplayName("Baca grešku ako id osobe nije unet")
     void deletePersonIdNull() {
         assertThatThrownBy(() -> personService.deletePerson(null))
                 .isInstanceOf(Exception.class)
@@ -197,7 +197,7 @@ class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Delete person throws exception if person not found")
+    @DisplayName("Baca grešku ako osoba koju želimo da obrišemo ne postoji")
     void deletePersonNotFound() {
         Long id = 999L;
 
@@ -212,7 +212,7 @@ class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Update person - valid")
+    @DisplayName("Uspešno ažurira podatke osobe")
     void updatePersonValid() throws Exception {
         PersonUpdateDTO updateDto = new PersonUpdateDTO(1L, "Beograd");
         Person person = new Person();
@@ -240,7 +240,7 @@ class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Update person - not found")
+    @DisplayName("Baca grešku ako osoba koju želimo da ažuriramo ne postoji")
     void updatePersonNotFound() {
         PersonUpdateDTO updateDto = new PersonUpdateDTO(1L, "Beograd");
         when(personRepository.findByUniqueIdentificationNumber(1L)).thenReturn(Optional.empty());

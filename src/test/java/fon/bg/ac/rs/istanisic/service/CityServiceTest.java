@@ -36,7 +36,7 @@ class CityServiceTest {
     private CityService cityService;
 
     @Test
-    @DisplayName("Get all cities empty")
+    @DisplayName("Vraća praznu listu kada nema gradova")
     void getAllCitiesEmpty() {
         when(cityRepository.findAll()).thenReturn(List.of());
         when(cityConverter.listToDTO(List.of())).thenReturn(List.of());
@@ -49,7 +49,7 @@ class CityServiceTest {
     }
 
     @Test
-    @DisplayName("Save city successfully")
+    @DisplayName("Uspešno čuva grad")
     void saveCitySuccess() throws Exception {
         CityDTO dto = new CityDTO(1L, 11000, "Beograd", 1500000);
         City entity = new City(1L, 1000, "Beograd", 1500000);
@@ -65,7 +65,7 @@ class CityServiceTest {
     }
 
     @Test
-    @DisplayName("Delete non existing city throws exception")
+    @DisplayName("Baca izuzetak pri brisanju nepostojećeg grada")
     void deleteNonExistingCity() {
         when(cityRepository.findByPostalCode(99999)).thenReturn(Optional.empty());
 
@@ -77,7 +77,7 @@ class CityServiceTest {
     }
 
     @Test
-    @DisplayName("Delete existing city success")
+    @DisplayName("Uspešno briše postojeći grad")
     void deleteExistingCity() throws Exception {
         int postalCode = 11000;
         City city = new City(1L, postalCode, "Beograd", 1500000);
@@ -90,7 +90,7 @@ class CityServiceTest {
     }
 
     @Test
-    @DisplayName("Update non existing city throws exception")
+    @DisplayName("Baca izuzetak pri ažuriranju nepostojećeg grada")
     void updateNonExistingCity() {
         CityUpdateDTO updateDTO = new CityUpdateDTO(99999, 1000);
 
@@ -104,7 +104,7 @@ class CityServiceTest {
     }
 
     @Test
-    @DisplayName("Update city successfully")
+    @DisplayName("Uspešno ažurira grad")
     void updateCitySuccess() throws Exception {
         CityUpdateDTO updateDTO = new CityUpdateDTO(11000, 2000000);
         City entity = new City(1L, 11000, "Beograd", 1500000);

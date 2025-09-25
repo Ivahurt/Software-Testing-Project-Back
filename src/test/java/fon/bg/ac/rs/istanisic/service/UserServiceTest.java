@@ -48,7 +48,7 @@ public class UserServiceTest {
     }
 
     @Test
-    @DisplayName("Get all users")
+    @DisplayName("Vraća sve korisnike")
     void getAllUsers() throws Exception {
         when(userRepository.findAll()).thenReturn(List.of(adminUser));
 
@@ -59,7 +59,7 @@ public class UserServiceTest {
     }
 
     @Test
-    @DisplayName("Get all users with role KORISNIK")
+    @DisplayName("Vraća sve korisnike sa ulogom KORISNIK")
     void getAllUsersByRole() throws Exception {
         User user = User.builder()
                 .firstName("Petar")
@@ -78,7 +78,7 @@ public class UserServiceTest {
     }
 
     @Test
-    @DisplayName("Save user")
+    @DisplayName("Uspešno čuva korisnika")
     void saveUser() throws Exception {
         when(userConverter.toEntity(adminUserDTO)).thenReturn(adminUser);
 
