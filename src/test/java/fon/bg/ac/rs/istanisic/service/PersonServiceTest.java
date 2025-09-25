@@ -13,8 +13,10 @@ import fon.bg.ac.rs.istanisic.repository.PersonRepository;
 import fon.bg.ac.rs.istanisic.repository.foreign_key.PersonResidenceHistoryId;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -28,23 +30,23 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 import static org.mockito.ArgumentMatchers.any;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class PersonServiceTest {
 
-    @MockBean
+    @Mock
     private PersonRepository personRepository;
-    @MockBean
+    @Mock
     private PersonConverter personConverter;
-    @MockBean
+    @Mock
     private CityRepository cityRepository;
-    @MockBean
+    @Mock
     private PersonResidenceService personResidenceService;
-    @MockBean
+    @Mock
     private PaymentConverter paymentConverter;
-    @MockBean
+    @Mock
     private PaymentRepository paymentRepository;
 
-    @Autowired
+    @InjectMocks
     private PersonService personService;
 
     @Test
