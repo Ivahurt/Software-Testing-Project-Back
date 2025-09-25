@@ -8,10 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
 public class CityConverterTest {
     private final CityConverter cityConverter = new CityConverter();
-
 
     @Test
     void testToEntityNotNull() {

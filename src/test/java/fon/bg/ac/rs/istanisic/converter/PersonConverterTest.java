@@ -11,7 +11,6 @@ import java.time.LocalDate;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
 public class PersonConverterTest {
     private final PersonConverter personConverter = new PersonConverter();
 
