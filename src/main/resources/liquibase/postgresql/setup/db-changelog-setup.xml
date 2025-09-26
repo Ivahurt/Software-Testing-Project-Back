@@ -167,4 +167,9 @@
                  splitStatements="false"/>
     </changeSet>
 
+    <changeSet id="view_people_with_age_in_months" author="istanisic">
+        <sqlFile path="operations/view_people_with_age_in_months.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+
 </databaseChangeLog>
