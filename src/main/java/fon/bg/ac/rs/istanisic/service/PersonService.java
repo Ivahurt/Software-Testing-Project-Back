@@ -131,12 +131,14 @@ public class PersonService {
     }
 
     public PersonDTO getPersonSumPayments(Long uniqueId) throws Exception{
+        System.out.println("Usao je u fju getPersonSumPayments u PersonService klasi");
         Optional<Person> foundPerson = personRepository.findByUniqueIdentificationNumber(uniqueId);
         if (foundPerson.isEmpty()) {
             throw new Exception("Osoba ne postoji");
         }
 
         Person person = foundPerson.get();
+        System.out.println("Pronadjena osoba: " + person);
         return personConverter.toDto(person);
     }
 }
