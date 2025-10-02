@@ -1,4 +1,22 @@
-create trigger trg_update_residence_history
+create or replace function trg_update_person_residence()
+returns trigger as $$
+begin
+    if new.city_residence_id is distinct from old.city_residence_id then
+
+        update person_residence_history
+        set residence_end = current_date
+        where person_id = new.id
+          and residence_end is null;
+
+        insert into person_residence_history(person_id, city_id, residence_start, residence_end)
+        values (new.id, new.city_residence_id, current_date, null);
+    end if;
+
+    return new;
+end;
+$$ language plpgsql;
+
+create trigger trg_after_update_person_residence
 after update of city_residence_id on person
 for each row
-execute function update_residence_history();
+execute function trg_update_person_residence();
