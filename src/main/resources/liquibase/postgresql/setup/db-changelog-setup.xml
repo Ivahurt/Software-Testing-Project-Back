@@ -14,8 +14,8 @@
              relativeToChangelogFile="true"/>
     </changeSet>
 
-    <changeSet id="select_city_by_postalcode" author="istanisic">
-        <sqlFile path="operations/fnc_select_city_by_postal_code.sql" relativeToChangelogFile="true"
+    <changeSet id="get_postalcode_city_by_name" author="istanisic">
+        <sqlFile path="operations/fnc_get_postalcode_city_by_name.sql" relativeToChangelogFile="true"
                  splitStatements="false"/>
     </changeSet>
 
