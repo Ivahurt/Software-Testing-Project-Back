@@ -79,6 +79,18 @@
                  relativeToChangelogFile="true"/>
     </changeSet>
 
+    <changeSet id="fnc_check_update_of_sum_of_payments" author="istanisic">
+        <sqlFile path="operations/fnc_check_update_of_sum_of_payments.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="trigger_check_update_of_sum_of_payments" author="istanisic">
+        <sqlFile path="operations/trigger_check_update_of_sum_of_payments.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
     <changeSet id="fnc_forbid_direct_sum_of_payments" author="istanisic">
         <sqlFile path="operations/fnc_forbid_direct_sum_of_payments.sql"
                  relativeToChangelogFile="true"

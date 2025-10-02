@@ -137,9 +137,6 @@ public class PersonService {
         }
 
         Person person = foundPerson.get();
-        System.out.println("Pronadjena je osoba za ispis svih njenih isplata");
-        System.out.println(person);
-
         return personConverter.toDto(person);
     }
 }
