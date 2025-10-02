@@ -12,5 +12,5 @@ create table if not exists users (
     password varchar(255) not null check (
         password ~ '^(?=.*[a-zA-ZČĆŽŠĐ])[a-zA-Z0-9ČĆŽŠĐ]{4,}$'
     ),
-    role varchar(30) not null
+    role varchar(30) not null  check (role in ('Administrator', 'Korisnik'))
 );
