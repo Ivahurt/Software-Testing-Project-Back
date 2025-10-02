@@ -122,7 +122,7 @@ public class PaymentServiceTest {
 
         assertThatThrownBy(() -> paymentService.getPersonPayments(uniqueId))
                 .isInstanceOf(Exception.class)
-                .hasMessage("Ne postoji osoba sa jmbg-om: " + uniqueId);
+                .hasMessage("Ne postoji isplata za osobu sa jmbg-om: " + uniqueId);
 
         verify(paymentConverter, never()).listToDTO(any());
     }

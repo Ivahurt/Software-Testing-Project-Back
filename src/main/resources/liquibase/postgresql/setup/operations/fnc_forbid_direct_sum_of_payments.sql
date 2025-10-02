@@ -5,7 +5,9 @@ begin
       raise EXCEPTION 'Direktan unos ukupne sume za isplatu nije dozvoljen';
    end if;
 
-   if TG_OP = 'UPDATE' and NEW.sum_of_payments is distinct from OLD.sum_of_payments then
+   if TG_OP = 'UPDATE'
+      and NEW.sum_of_payments is distinct from OLD.sum_of_payments
+      and pg_trigger_depth() = 0 then
       raise EXCEPTION 'Direktna izmena ukupne sume za isplatu nije dozvoljena';
    end if;
 

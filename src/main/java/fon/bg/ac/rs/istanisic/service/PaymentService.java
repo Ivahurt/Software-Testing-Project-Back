@@ -11,6 +11,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,10 +49,11 @@ public class PaymentService {
                 .executeUpdate();
     }
 
+
     public List<PaymentDTO> getPersonPayments(Long uniqueId) throws Exception{
         List<Payment> payments = paymentRepository.findByPersonUniqueIdentificationNumber(uniqueId);
         if (payments.isEmpty()) {
-            throw new Exception("Ne postoji osoba sa jmbg-om: "+ uniqueId);
+            throw new Exception("Ne postoji isplata za osobu sa jmbg-om: "+ uniqueId);
         }
 
         return paymentConverter.listToDTO(payments);

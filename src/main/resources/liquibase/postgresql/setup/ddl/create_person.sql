@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS person (
     NOT NULL CHECK (LENGTH(first_name) BETWEEN 2 AND 30 AND first_name ~ '^[A-ZČĆŠŽĐ][a-zčćšžđ]{1,}$'),
     last_name VARCHAR(30)
     NOT NULL CHECK (LENGTH(last_name) BETWEEN 2 AND 30 AND last_name ~ '^[A-ZČĆŠŽĐ][a-zčćšžđ]{1,}$'),
-    date_of_birth DATE NOT NULL,
+    date_of_birth DATE NOT NULL CHECK(date_of_birth <= CURRENT_DATE),
     age_in_months INT,
     age_in_months1 INT DEFAULT NULL CHECK (age_in_months1 IS NULL),
     unique_identification_number BIGINT NOT NULL UNIQUE,
