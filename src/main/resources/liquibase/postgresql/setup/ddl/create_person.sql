@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS person (
     age_in_months1 INT DEFAULT NULL CHECK (age_in_months1 IS NULL),
     unique_identification_number BIGINT NOT NULL UNIQUE,
     sum_of_payments BIGINT DEFAULT 0,
-    city_birth_id BIGINT,
-    city_residence_id BIGINT,
+    city_birth_id BIGINT NOT NULL,
+    city_residence_id BIGINT NOT NULL,
 
     FOREIGN KEY (city_birth_id) REFERENCES city(id) ON UPDATE CASCADE ON DELETE RESTRICT,
     FOREIGN KEY (city_residence_id) REFERENCES city(id) ON UPDATE SET NULL ON DELETE SET NULL

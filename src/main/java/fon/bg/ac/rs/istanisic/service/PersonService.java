@@ -98,8 +98,19 @@ public class PersonService {
         }
 
         Person updatedPerson = foundPerson.get();
-        updatedPerson.setCityOfResidence(foundCity.get());
+        City currentCity = updatedPerson.getCityOfResidence();
+        City newCity = foundCity.get();
 
+        if (currentCity != null && currentCity.getPostalCode() == newCity.getPostalCode()) {
+            String message = String.format("%s %s (%d) već živi u %s",
+                    updatedPerson.getFirstName(),
+                    updatedPerson.getLastName(),
+                    updatedPerson.getUniqueIdentificationNumber(),
+                    newCity.getName());
+            throw new Exception(message);
+        }
+
+        updatedPerson.setCityOfResidence(foundCity.get());
         PersonResidenceHistoryId prhId = new PersonResidenceHistoryId(
                 foundPerson.get().getId(),
                 foundCity.get().getId(),

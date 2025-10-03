@@ -41,6 +41,12 @@
                  splitStatements="false"/>
     </changeSet>
 
+    <changeSet id="trigger_forbid_update_of_city_birth" author="istanisic">
+        <sqlFile path="operations/trigger_forbid_update_of_city_birth.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
     <changeSet id="insert_to_person" author="istanisic">
         <sqlFile path="dml/insert_to_person.sql"
                  relativeToChangelogFile="true"/>
